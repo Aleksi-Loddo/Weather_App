@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CoordinateInput(
+    modifier: Modifier = Modifier,
     initialLatitude: String = "65.0124",
     initialLongitude: String = "25.4682",
     onSubmit: (Double, Double) -> Unit

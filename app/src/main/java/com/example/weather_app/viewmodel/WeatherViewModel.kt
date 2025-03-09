@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.weather_app.api.GeocodingApi
+
 import com.example.weather_app.api.WeatherApi
 import com.example.weather_app.repository.WeatherResponse
 import kotlinx.coroutines.launch
@@ -36,7 +36,7 @@ class WeatherViewModel(
 }
 
 class WeatherViewModelFactory(private val weatherApi: WeatherApi) : ViewModelProvider.Factory {
-     override fun <T : ViewModel> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return WeatherViewModel(weatherApi) as T

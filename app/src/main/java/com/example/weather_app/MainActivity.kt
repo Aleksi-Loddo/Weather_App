@@ -12,7 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.weather_app.api.WeatherApi
 import com.example.weather_app.ui.screens.InfoScreen
 import com.example.weather_app.ui.screens.MainScreen
-import com.example.weather_app.ui.theme.Weather_AppTheme
+import com.example.weather_app.ui.theme.weather_AppTheme
 import com.example.weather_app.viewmodel.WeatherViewModel
 import com.example.weather_app.viewmodel.WeatherViewModelFactory
 
@@ -27,7 +27,9 @@ class MainActivity : ComponentActivity() {
         viewModel = ViewModelProvider(this, factory).get(WeatherViewModel::class.java)
 
         setContent {
-            WeatherApp(viewModel)
+            weather_AppTheme {
+                WeatherApp(viewModel)
+            }
         }
     }
 }
@@ -44,7 +46,7 @@ fun WeatherApp(viewModel: WeatherViewModel) {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    Weather_AppTheme {
+    weather_AppTheme {
         WeatherApp(viewModel = WeatherViewModel(WeatherApi.create()))
     }
 }

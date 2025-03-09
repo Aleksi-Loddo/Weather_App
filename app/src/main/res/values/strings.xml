@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Weather_App</string>
+    <string name="max_temperature">Max Temperature: %1$s°C</string>
+    <string name="min_temperature">Min Temperature: %1$s°C</string>
+    <string name="apparent_max_temperature">Apparent Max Temperature: %1$s°C</string>
+    <string name="apparent_min_temperature">Apparent Min Temperature: %1$s°C</string>
+    <string name="max_uv_index">Max UV Index: %1$s</string>
+    <string name="precipitation_probability_max">Precipitation Probability Max: %1$s%%</string>
+    <string name="precipitation_sum">Precipitation Sum: %1$s mm</string>
+    <string name="rain_sum">Rain Sum: %1$s mm</string>
+    <string name="showers_sum">Showers Sum: %1$s mm</string>
+    <string name="snowfall_sum">Snowfall Sum: %1$s mm</string>
+    <string name="info_screen_title">Info Screen</string>
+    <string name="info_screen_description">This is an Android app to check the weather using latitude and longitude coordinates of cities.</string>
+    <string name="info_screen_api">The app uses Open-meteo API available at https://open-meteo.com/</string>
+    <string name="info_screen_developer">Developed by Aleksi Loddo</string>
 </resources>
