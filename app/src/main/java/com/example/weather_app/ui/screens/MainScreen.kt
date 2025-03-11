@@ -103,7 +103,7 @@ fun HomeScreen(weatherData: WeatherResponse?, onFetchWeather: (Double, Double) -
                         onClick = { /* Handle submit */ },
                         modifier = Modifier.weight(0.3f).align(Alignment.CenterVertically)
                     ) {
-                        Text("Submit")
+                        Text("Get Weather")
                     }
                 }
             }

@@ -48,7 +48,7 @@ fun CoordinateInput(
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Submit")
+            Text("Get Weather")
         }
     }
 }
