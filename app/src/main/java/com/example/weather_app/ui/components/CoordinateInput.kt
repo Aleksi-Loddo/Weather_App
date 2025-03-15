@@ -42,8 +42,15 @@ fun CoordinateInput(
 
                 val lat = latitude.toDoubleOrNull()
                 val lon = longitude.toDoubleOrNull()
+
                 if (lat != null && lon != null) {
                     onSubmit(lat, lon)
+                }
+                if (lat != null && lon != null) {
+                        if (lat > 180 || lat < -180 || lon > 180 || lon < -180) {
+                            return@Button
+                        }
+
                 }
             },
             modifier = Modifier.fillMaxWidth()

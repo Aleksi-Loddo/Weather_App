@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.weather_app"
-        minSdk = 24
+        minSdk = 25
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"

@@ -1,6 +1,7 @@
 package com.example.weather_app.viewmodel
 
 
+
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,6 +12,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.weather_app.api.WeatherApi
 import com.example.weather_app.repository.WeatherResponse
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class WeatherViewModel(
         private val weatherApi: WeatherApi,
@@ -27,6 +29,15 @@ class WeatherViewModel(
             try {
                 val response = weatherApi.getDailyWeather(latitude, longitude)
                 _weatherData.value = response
+            } catch (e: HttpException) {
+                when (e.code()) {
+                    400 -> _errorMessage.value = "Bad Request: ${e.message()}"
+                    401 -> _errorMessage.value = "Unauthorized: ${e.message()}"
+                    403 -> _errorMessage.value = "Forbidden: ${e.message()}"
+                    404 -> _errorMessage.value = "Not Found: ${e.message()}"
+                    else -> _errorMessage.value = "HTTP Error: ${e.message()}"
+                }
+                _weatherData.value = null
             } catch (e: Exception) {
                 _errorMessage.value = "Failed to fetch weather data: ${e.message}"
                 _weatherData.value = null
