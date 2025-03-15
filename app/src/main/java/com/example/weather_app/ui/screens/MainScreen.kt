@@ -44,7 +44,7 @@ fun MainScreen(viewModel: WeatherViewModel = viewModel()) {
     val navController = rememberNavController()
     val weatherData by viewModel.weatherData.observeAsState(initial = null)
     val errorMessage by viewModel.errorMessage.observeAsState(initial = null)
-    val snackbarHostState = remember { SnackbarHostState() }
+    val snack_BarHostState = remember { SnackbarHostState() }
 
 
     Scaffold(
@@ -69,7 +69,8 @@ fun MainScreen(viewModel: WeatherViewModel = viewModel()) {
                     navController.navigate(item.route)
                 }
             )
-        }
+        },
+        snackbarHost = { SnackbarHost(hostState = snack_BarHostState) }
     ) { innerPadding ->
         NavHost(
             navController = navController,
@@ -81,7 +82,8 @@ fun MainScreen(viewModel: WeatherViewModel = viewModel()) {
         }
         errorMessage?.let {
             LaunchedEffect(it) {
-                snackbarHostState.showSnackbar(it)
+                snack_BarHostState.showSnackbar(it)
+                viewModel.clearErrorMessage()
             }
         }
     }

@@ -21,8 +21,8 @@ class WeatherViewModel(
     private val _weatherData = MutableLiveData<WeatherResponse?>()
     val weatherData: LiveData<WeatherResponse?> get() = _weatherData
 
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> get() = _errorMessage
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: MutableLiveData<String?> get() = _errorMessage
 
     fun fetchWeather(latitude: Double, longitude: Double) {
         viewModelScope.launch {
@@ -30,6 +30,7 @@ class WeatherViewModel(
                 val response = weatherApi.getDailyWeather(latitude, longitude)
                 _weatherData.value = response
             } catch (e: HttpException) {
+                    Log.e("WeatherViewModel", "HTTP Error: ${e.message()}")
                 when (e.code()) {
                     400 -> _errorMessage.value = "Bad Request: ${e.message()}"
                     401 -> _errorMessage.value = "Unauthorized: ${e.message()}"
@@ -44,7 +45,12 @@ class WeatherViewModel(
             }
         }
     }
+
+    fun clearErrorMessage() {
+        _errorMessage.value = null
+    }
 }
+
 
 class WeatherViewModelFactory(private val weatherApi: WeatherApi) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
