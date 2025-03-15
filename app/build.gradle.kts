@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.play.services.gcm)
     implementation(libs.play.services.location)
+    implementation(libs.androidx.compose.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -58,12 +59,12 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation(libs.androidx.lifecycle.viewmodel.compose) // ViewModel
+    implementation (libs.retrofit) // Retrofit
+    implementation (libs.converter.gson) // Gson
     implementation(libs.accompanist.permissions)
     implementation(libs.androidx.runtime.livedata)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.compose) // Navigation
 
 
 

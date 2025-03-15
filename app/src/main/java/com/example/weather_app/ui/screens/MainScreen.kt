@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 
+
+
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,6 +24,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.remember
 import com.example.weather_app.viewmodel.WeatherViewModel
 import com.example.weather_app.repository.WeatherResponse
 import com.example.weather_app.ui.components.BottomNavItem
@@ -40,6 +44,7 @@ fun MainScreen(viewModel: WeatherViewModel = viewModel()) {
     val navController = rememberNavController()
     val weatherData by viewModel.weatherData.observeAsState(initial = null)
     val errorMessage by viewModel.errorMessage.observeAsState(initial = null)
+    val snackbarHostState = remember { SnackbarHostState() }
 
 
     Scaffold(
@@ -73,6 +78,11 @@ fun MainScreen(viewModel: WeatherViewModel = viewModel()) {
         ) {
             composable("home") { HomeScreen(weatherData, viewModel::fetchWeather) }
             composable("info") { InfoScreen() }
+        }
+        errorMessage?.let {
+            LaunchedEffect(it) {
+                snackbarHostState.showSnackbar(it)
+            }
         }
     }
 }
